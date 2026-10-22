@@ -1,0 +1,61 @@
+name: 自动更新合并规则
+
+on:
+  # 每天 03:17 UTC（北京时间 11:17）自动重建
+  schedule:
+    - cron: "17 3 * * *"
+  # 允许在 Actions 页面手动点一次
+  workflow_dispatch:
+  # 改了构建脚本或工作流本身时也重建一次
+  push:
+    paths:
+      - "scripts/**"
+      - ".github/workflows/**"
+
+# 需要写权限才能把构建结果提交回仓库
+permissions:
+  contents: write
+
+# 同一时间只跑一个；等正在跑的那个结束，不打断
+concurrency:
+  group: update-merged-filter
+  cancel-in-progress: false
+
+jobs:
+  build:
+    name: 构建并提交合并规则
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: 检出仓库
+        uses: actions/checkout@v4
+
+      - name: 安装 Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: 构建合并规则
+        run: python scripts/build.py
+
+      - name: 有变化则提交并推送
+        run: |
+          set -euo pipefail
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add dist
+
+          # 忽略产物中的时间戳字段（merged.txt / allowlist.txt 的 Last modified、stats.json 的
+          # generated_at），只有规则内容真正变化时才提交，避免每天产生空提交
+          if git diff --staged --quiet -I'^! Last modified:' -I'"generated_at"'; then
+            echo "规则无变化，跳过提交。"
+            exit 0
+          fi
+
+          COUNT=$(python -c "import json;d=json.load(open('dist/stats.json'));print(format(d['blocking_domains'],','))" 2>/dev/null || echo '?')
+          EXC=$(python -c "import json;d=json.load(open('dist/stats.json'));print(d['exception_rules'])" 2>/dev/null || echo '?')
+
+          git commit -m "chore: 自动更新规则库（$(date -u +%Y-%m-%d)）" -m "拦截域名 ${COUNT} 条，例外规则 ${EXC} 条。"
+          git push
