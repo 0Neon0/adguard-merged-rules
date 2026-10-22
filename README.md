@@ -22,8 +22,8 @@ https://raw.githubusercontent.com/0Neon0/adguard-merged-rules/main/dist/merged.t
 
 在 AdGuard Home 中添加：**过滤器 → DNS 黑名单 → 添加黑名单 → 添加自定义列表**，粘贴上述 URL。
 
-该清单已包含两个上游源的全部拦截规则以及转换后的白名单例外，无需再单独添加 AdRules `dns.txt`、`dns-allowlist.txt`或
-HaGeZi `pro.txt`，以避免规则重复加载。
+该清单已包含两个上游源的全部拦截规则以及转换后的白名单例外，无需再单独添加AdRules`dns.txt`、`dns-allowlist.txt`或
+HaGeZi`pro.txt`，以避免规则重复加载。
 
 ## 另外两个产物
 
