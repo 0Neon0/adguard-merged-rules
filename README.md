@@ -49,7 +49,8 @@ HaGeZi `pro.txt` 或 `dns-allowlist.txt`，以避免规则重复加载。
 
 ## 自动更新
 
-`.github/workflows/update.yml` 每天 **03:17 UTC（北京时间 11:17）** 自动执行：
+`.github/workflows/update.yml` **每 12 小时**自动执行一次，起点为**北京时间 00:00**，
+即每天 **北京时间 00:00 与 12:00** 各重建一次：
 
 1. 重新拉取三个上游源
 2. 合并 → 去重 → 转换白名单

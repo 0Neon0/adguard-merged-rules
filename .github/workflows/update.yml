@@ -1,9 +1,10 @@
 name: 自动更新合并规则
 
 on:
-  # 每天 03:17 UTC（北京时间 11:17）自动重建
+  # 每 12 小时自动重建一次，起点为北京时间 00:00
+  # 注：GitHub Actions 的 schedule 只认 UTC，不支持时区；UTC 16:00 / 04:00 即北京时间 00:00 / 12:00
   schedule:
-    - cron: "17 3 * * *"
+    - cron: "0 4,16 * * *"
   # 允许在 Actions 页面手动点一次
   workflow_dispatch:
   # 改了构建脚本或工作流本身时也重建一次
