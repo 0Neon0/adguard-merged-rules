@@ -2,7 +2,7 @@
 ! Title: AdRules 白名单（AdGuard 可用例外规则）
 ! Description: 由 AdRules mod/rules/dns-allowlist.txt 转换而来的 @@ 例外规则。
 ! Homepage: https://github.com/0Neon0/adguard-merged-rules
-! Last modified: 2026-10-24 18:29:38 UTC
+! Last modified: 2026-10-25 08:51:45 UTC
 ! 例外条数: 163
 !
 @@||7x24s.com^
