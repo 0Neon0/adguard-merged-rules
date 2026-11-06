@@ -1,16 +1,16 @@
 {
-  "generated_at": "2026-11-06 11:42:31 UTC",
+  "generated_at": "2026-11-06 21:11:46 UTC",
   "sources": {
     "adrules": "https://raw.githubusercontent.com/Cats-Team/AdRules/main/dns.txt",
     "hagezi": "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/pro.txt",
     "allowlist": "https://raw.githubusercontent.com/Cats-Team/AdRules/main/mod/rules/dns-allowlist.txt"
   },
-  "blocking_domains": 357986,
+  "blocking_domains": 355136,
   "blocking_wildcards": 408,
   "blocking_regexes": 27,
-  "blocking_total": 358421,
-  "before_merge_total": 432140,
-  "duplicates_removed": 74154,
+  "blocking_total": 355571,
+  "before_merge_total": 428946,
+  "duplicates_removed": 73810,
   "exception_rules": 163,
   "exceptions_from_plain_domains": 160,
   "exceptions_from_regex": 3,
@@ -18,16 +18,16 @@
   "unparsed_rules": 0,
   "per_source": {
     "adrules": {
-      "domains": 209510,
+      "domains": 209626,
       "wildcards": 408,
       "regexes": 27
     },
     "hagezi": {
-      "domains": 222630,
+      "domains": 219320,
       "wildcards": 0,
       "regexes": 0
     }
   },
-  "merged_lines": 358614,
-  "merged_bytes": 8475424
+  "merged_lines": 355764,
+  "merged_bytes": 8387432
 }
